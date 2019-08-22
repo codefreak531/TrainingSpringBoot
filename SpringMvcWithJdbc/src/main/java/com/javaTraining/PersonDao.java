@@ -23,13 +23,13 @@ public class PersonDao {
             String sql = "UPDATE contact SET name=?, email=?, address=?, " + "telephone=? WHERE contact_id=?";
             jdbcTemplate.update(sql, person.getName(), person.getEmail(), person.getAddress(), person.getTelephone(), person.getId());
         } else {
-            String sql = "INSERT INTO contact (name, email, address, telephone)" + " VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO person (name, email, address, telephone)" + " VALUES (?, ?, ?, ?)";
             jdbcTemplate.update(sql, person.getName(), person.getEmail(), person.getAddress(), person.getTelephone());
         }
     }
 
     public void delete(int personId) {
-        String sql = "DELETE FROM contact WHERE contact_id=?";
+        String sql = "DELETE FROM person WHERE person_id=?";
         jdbcTemplate.update(sql, personId);
     }
 
