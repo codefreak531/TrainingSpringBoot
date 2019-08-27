@@ -18,31 +18,35 @@ public class PersonController {
     PersonDao personDao;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView home(ModelAndView model){
+    public ModelAndView home(ModelAndView model) {
         List<Person> personList = personDao.list();
-        model.addObject("personList",personList);
+        model.addObject("personList", personList);
         model.setViewName("home");
         return model;
     }
 
-    @RequestMapping(value="/newPerson", method = RequestMethod.GET)
-    public ModelAndView newPerson(ModelAndView model){
+    @RequestMapping(value = "/newPerson", method = RequestMethod.GET)
+    public ModelAndView newPerson(ModelAndView model) {
         Person person = new Person();
-        model.addObject("person",person);
+        model.addObject("person", person);
         model.setViewName("newPerson");
         return model;
     }
 
     @RequestMapping(value = "/savePerson")
-    public ModelAndView savePerson(@ModelAttribute Person person){
+    public ModelAndView savePerson(@ModelAttribute Person person) {
         personDao.saveOrUpdate(person);
         return new ModelAndView("redirect:/");
     }
 
-    @RequestMapping(value="/deleteContact", method = RequestMethod.GET)
-    public ModelAndView deletePerson(HttpServletRequest httpServletRequest){
+    @RequestMapping(value = "/deleteContact", method = RequestMethod.GET)
+    public ModelAndView deletePerson(HttpServletRequest httpServletRequest) {
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
         personDao.delete(id);
         return new ModelAndView("redirect:/");
     }
 }
+
+
+
+
